@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    val BASE_URL = "https://dummyjson.com/users"
+    val BASE_URL = "https://dummyjson.com/"
 
     val userService:UserService by lazy {
         Retrofit.Builder()

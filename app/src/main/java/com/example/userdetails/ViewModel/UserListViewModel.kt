@@ -9,20 +9,16 @@ import com.example.userdetails.model.Users
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class UserListViewModel : ViewModel() {
+class UserListViewModel (private val userRepository: UserRepository): ViewModel() {
 
-    private val userRepository = UserRepository()
+
 
     private val _users = MutableLiveData<List<Users>>()
     val users:LiveData<List<Users>> = _users
 
 
 
-    init {
-        fetchUsers()
-    }
-
-    private fun fetchUsers() {
+    fun fetchUsers() {
         viewModelScope.launch(Dispatchers.IO){
             val usersFromApi = userRepository.getUserFromApi()
             _users.postValue(usersFromApi)
